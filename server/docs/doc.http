@@ -1,0 +1,33 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@baseUrl = http://{{host}}/api
+
+### Register
+POST {{baseUrl}}/users/register
+Accept: application/json
+Content-Type: application/json 
+
+{
+    "id": "test1",
+    "first_name": "test1",
+    "last_name": "test1",
+    "user_name": "test1",
+    "email": "test1@gmail.com",
+    "password": "test1"
+}
+
+### Login
+POST {{baseUrl}}/users/login
+Accept: application/json
+Content-Type: application/json 
+
+{
+    "user_name": "test1",
+    "email": "test1@gmail.com",
+    "password": "test1"
+}
+
+### Me
+GET {{baseUrl}}/users/me
+Accept: application/json
