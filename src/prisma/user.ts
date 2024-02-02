@@ -23,3 +23,21 @@ export const getTotalUsers = async (query: string) => {
     },
   })) as number;
 };
+
+export const getUserByEmail = async (email: string) => {
+  return (await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  })) as User;
+};
+
+export const createUser = async (
+  name: string,
+  email: string,
+  password: string
+) => {
+  return await prisma.user.create({
+    data: { name, email, password },
+  });
+};
