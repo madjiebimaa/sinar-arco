@@ -3,7 +3,12 @@ export type Message = {
   description: string;
 };
 
-export type AuthErrorType = 'INVALID_FIELDS' | 'EMAIL_ALREADY_EXIST';
+export type AuthErrorType =
+  | 'INVALID_FIELDS'
+  | 'EMAIL_ALREADY_EXIST'
+  | 'INVALID_CREDENTIALS'
+  | "UNKNOWN";
+
 export const mapAuthErrorToMessage = (type: AuthErrorType): Message => {
   switch (type) {
     case 'EMAIL_ALREADY_EXIST':
@@ -18,6 +23,13 @@ export const mapAuthErrorToMessage = (type: AuthErrorType): Message => {
         description:
           "It seems there's an issue with the information you provided. Please double-check your details and ensure all required fields are filled correctly.",
       };
+    case 'INVALID_CREDENTIALS':
+      return {
+        title: 'Authentication Failed',
+        description:
+          "We're sorry, but the credentials you entered are not valid. Please double-check your username and password.",
+      };
+    case "UNKNOWN":
     default:
       return {
         title: 'Technical Difficulties.',

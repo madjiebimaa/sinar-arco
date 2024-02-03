@@ -11,7 +11,7 @@ export default function Page() {
         <h2 className="font-bold text-2xl text-slate-900">
           Sign up to Sinar Arco
         </h2>
-        <section className="flex flex-col space-y-6">
+        <section className="flex flex-col space-y-8">
           <Button size="lg" className="rounded-full font-semibold py-8">
             <FcGoogle className="shrink-0 h-6 w-6 mr-4" />
             <span>Sign up with Google</span>

@@ -43,12 +43,14 @@ export default function Page() {
         description:
           'Congratulations! Your account has been successfully created. Welcome to Sinar Arco,',
       });
+
+      form.reset();
+      router.push('/auth/signin');
     } else {
       const { title, description } = mapAuthErrorToMessage(error.type);
       toast({ variant: 'destructive', title, description });
+      form.reset();
     }
-
-    form.reset();
   };
 
   return (
