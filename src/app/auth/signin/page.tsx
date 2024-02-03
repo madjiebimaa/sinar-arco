@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
@@ -24,6 +25,7 @@ import { LoginSchema } from '@/lib/schemas';
 
 export default function Page() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -40,12 +42,13 @@ export default function Page() {
         title: 'Welcome Back!',
         description: "Great news! You've successfully logged in to Sinar Arco.",
       });
+      form.reset();
+      router.push('/auth/signin');
     } else {
       const { title, description } = mapAuthErrorToMessage(error.type);
       toast({ variant: 'destructive', title, description });
+      form.reset();
     }
-
-    form.reset();
   };
 
   return (

@@ -7,6 +7,7 @@ export type AuthErrorType =
   | 'INVALID_FIELDS'
   | 'EMAIL_ALREADY_EXIST'
   | 'INVALID_CREDENTIALS'
+  | 'SIGN_OUT_ERROR'
   | "UNKNOWN";
 
 export const mapAuthErrorToMessage = (type: AuthErrorType): Message => {
@@ -29,6 +30,11 @@ export const mapAuthErrorToMessage = (type: AuthErrorType): Message => {
         description:
           "We're sorry, but the credentials you entered are not valid. Please double-check your username and password.",
       };
+      case "SIGN_OUT_ERROR":
+        return {
+          title: "Logout Unsuccessful",
+          description: "We encountered a problem while trying to log you out. Please try again."
+        }
     case "UNKNOWN":
     default:
       return {

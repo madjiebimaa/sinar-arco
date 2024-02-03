@@ -33,7 +33,6 @@ export default async function UserTable({ query, page }: UserTableProps) {
             <TableHeader>
               <TableRow>
                 <TableHead className="min-w-[250px]">Name</TableHead>
-                <TableHead>Username</TableHead>
                 <TableHead>Email</TableHead>
               </TableRow>
             </TableHeader>
@@ -41,7 +40,6 @@ export default async function UserTable({ query, page }: UserTableProps) {
               {users.map((user) => (
                 <TableRow key={user.name}>
                   <TableCell className="font-medium">{user.name}</TableCell>
-                  <TableCell>@{user.username}</TableCell>
                   <TableCell>{user.email}</TableCell>
                 </TableRow>
               ))}

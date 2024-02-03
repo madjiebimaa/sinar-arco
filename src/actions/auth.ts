@@ -1,14 +1,14 @@
 'use server';
 
 import bcrypt from 'bcryptjs';
+import { AuthError } from 'next-auth';
+import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-import { signIn } from '@/auth';
+import { signIn, signOut } from '@/auth';
 import { AuthErrorType } from '@/lib/message';
 import { LoginSchema, RegisterSchema } from '@/lib/schemas';
 import { createUser, getUserByEmail } from '@/prisma/user';
-import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
-import { AuthError } from 'next-auth';
 
 export const register = async (
   values: z.infer<typeof RegisterSchema>
@@ -35,10 +35,7 @@ export const login = async (
   values: z.infer<typeof LoginSchema>
 ): Promise<{ type: AuthErrorType } | null> => {
   try {
-    await signIn('credentials', {
-      ...values,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
-    });
+    await signIn('credentials', values);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -51,4 +48,9 @@ export const login = async (
   }
 
   return null;
+};
+
+export const logout = async () => {
+  await signOut();
+  redirect('/auth/signin');
 };

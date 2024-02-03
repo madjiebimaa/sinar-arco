@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 
-import Navbar from '@/components/internal/navbar';
 import { Toaster } from '@/components/ui/toaster';
 
-import { inter } from './fonts';
-
-import './globals.css';
+import { inter } from '@/app/fonts';
+import '@/app/globals.css';
 
 export const metadata: Metadata = {
   title: 'Sinar Arco',
@@ -29,7 +27,6 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
         suppressHydrationWarning
       >
-        <Navbar />
         {children}
         <Toaster />
       </body>

@@ -47,6 +47,7 @@ export default function UserTablePagination({
               <PaginationItem key={pageNumber}>
                 <PaginationLink
                   href={createPageURL(pageNumber)}
+                  scroll={false}
                   isActive={page === pageNumber}
                 >
                   {pageNumber}
@@ -82,9 +83,9 @@ function PaginationArrow({ href, type, isDisable }: PaginationArrowProps) {
 
   return isDisable ? (
     <Button variant="ghost" disabled={true} className="h-fit w-fit p-0">
-      <Comp href={href} />
+      <Comp href={href} scroll={false} />
     </Button>
   ) : (
-    <Comp href={href} />
+    <Comp href={href} scroll={false} />
   );
 }
